@@ -1,4 +1,27 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+  header('Access-Control-Allow-Origin: *');
+  header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
+  header('Access-Control-Allow-Headers: token, Content-Type');
+  header('Access-Control-Max-Age: 1728000');
+  header('Content-Length: 0');
+  header('Content-Type: text/plain');
+  die();
+}
+
+header('Access-Control-Allow-Origin: studiophase2.ca');
+header('Content-Type: application/json');
+// the message
+$msg = "First line of text\nSecond line of text";
+
+// use wordwrap() if lines are longer than 70 characters
+$msg = wordwrap($msg,70);
+
+// send email
+mail("antics@hotmail.com.com","My subject",$_POST['message'], 'Message', 10);
+
+
+
   /**
   * Requires the "PHP Email Form" library
   * The "PHP Email Form" library is available only in the pro version of the template
